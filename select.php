@@ -11,7 +11,8 @@ try {
     $tasks = array_map(
         fn ($row) => [
         "title" => $row['title'],
-        "completed" => (bool)$row['completed']
+        "completed" => (bool)$row['completed'],
+        "id" => (int) $row['id']
         ],
         $rows
     );
