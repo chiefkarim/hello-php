@@ -12,3 +12,5 @@
 <a href="/chat"> chat page</a>
 <?php endif; ?>
 
+<a href="/select.php"> tasks page</a>
+

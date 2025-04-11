@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 }
 
 define('NAME', "karim");
-$default = "karim";
+$default = NAME;
 $hello = function ($name = null) use ($default): string {
     $name = $name ?? $default;
 
@@ -26,6 +26,7 @@ $hello = function ($name = null) use ($default): string {
 <h1>Hello <?php echo NAME; ?>, welcome to Chat Page</h1> 
 <a href="/" >go back</a>
 <a href="/raw" >go to raw page</a>
+<a href="/select.php" >go to tasks page</a>
 
 <form method="POST" >
 <button type="submit" >increase</button>

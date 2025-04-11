@@ -22,9 +22,12 @@
                     }
                 });
             }
+
         </script>
     </head>
     <body>
+<a href="/" >go to home page</a>
+<a href="/chat" >go to chat page</a>
         <table>
             <h1>My Todo</h1>
             <thead>
@@ -34,6 +37,14 @@
                 </tr>
             </thead>
             <tbody>
+        <tr>
+          <td>
+            <form method="POST" action="/insert.php">
+              <input type="text" name="title"/>
+             <button type="submit">submit</button> 
+            </form>            
+          </td>
+        </tr>
                 <?php foreach ($tasks as $task): ?>
                 <tr>
                     <td><?php echo htmlspecialchars($task['title']) ?></td>
@@ -44,6 +55,7 @@
                     </td>
                 </tr>
                 <?php endforeach; ?>
+
             </tbody>
         </table>
     </body>
