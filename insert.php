@@ -17,9 +17,9 @@ if (!$title) {
 //TODO: sanitize data before using it
 try {
     $database = new Database($config, $username, $password);
-    $sql = 'INSERT INTO TASKS(title) values(:title);';
-    $stmt = $database->$conn->prepare($sql);
-    $stmt->execute([':title' => $title]);
+    $sql = 'INSERT INTO TASKS(title,user_id) values(:title,:user_id);';
+    $stmt = $database->conn->prepare($sql);
+    $stmt->execute([':title' => $title,":user_id" => 2]);
     header("Location: /tasks");
     exit;
 } catch (PDOException $e) {

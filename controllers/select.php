@@ -1,12 +1,11 @@
 <?php
 
-require_once 'Database.php';
 require_once "config.php";
 
 try {
     $database = new Database($config, $username, $password);
     $sql = "SELECT * FROM TASKS LIMIT 10;";
-    $stmt = $database->$conn->query($sql);
+    $stmt = $database->conn->query($sql);
     $stmt->setFetchMode(PDO::FETCH_ASSOC);
     $rows = $stmt -> fetchAll();
 

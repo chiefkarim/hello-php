@@ -21,7 +21,7 @@ if ($id === null || $completed === null) {
 try {
     $database = new Database($config, $username, $password);
     $sql = 'UPDATE TASKS SET completed = :completed WHERE id = :id;';
-    $stmt = $database->$conn->prepare($sql);
+    $stmt = $database->conn->prepare($sql);
     $stmt->execute([":completed" => $completed, ":id" => $id]);
 
 } catch (PDOException $e) {

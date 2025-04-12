@@ -7,7 +7,7 @@ class Database
     {
         try {
             $dsn = 'mysql:' . http_build_query($config, "", ";");
-            $this-> $conn = new PDO($dsn, $username, $password);
+            $this-> conn = new PDO($dsn, $username, $password);
             error_log("Connected to database {$config['dbname']} at {$config['host']} successfully.");
         } catch (PDOException $pe) {
             die('Could not connecto to database $dbname :' . $pe->getMessage());
