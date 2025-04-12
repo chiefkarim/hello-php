@@ -1,6 +1,7 @@
 <?php
 
-require_once 'connect.php';
+require_once 'Database.php';
+require_once 'config.php';
 
 // Read JSON input
 
@@ -15,10 +16,11 @@ if (!$title) {
 }
 //TODO: sanitize data before using it
 try {
+    $database = new Database($config, $username, $password);
     $sql = 'INSERT INTO TASKS(title) values(:title);';
-    $stmt = $conn->prepare($sql);
+    $stmt = $database->$conn->prepare($sql);
     $stmt->execute([':title' => $title]);
-    header("Location: /select.php");
+    header("Location: /tasks");
     exit;
 } catch (PDOException $e) {
     error_log($e->getMessage());

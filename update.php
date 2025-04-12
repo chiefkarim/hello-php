@@ -1,5 +1,6 @@
 <?php
-require_once 'connect.php';
+require_once 'Database.php';
+require_once 'config.php';
 
 // Read JSON input
 $input = file_get_contents("php://input");
@@ -18,7 +19,7 @@ if ($id === null || $completed === null) {
 }
 
 try {
-    $database = new Database();
+    $database = new Database($config, $username, $password);
     $sql = 'UPDATE TASKS SET completed = :completed WHERE id = :id;';
     $stmt = $database->$conn->prepare($sql);
     $stmt->execute([":completed" => $completed, ":id" => $id]);
