@@ -3,8 +3,9 @@
 require_once 'connect.php';
 
 try {
+    $database = new Database();
     $sql = "SELECT * FROM TASKS LIMIT 10;";
-    $stmt = $conn->query($sql);
+    $stmt = $database->$conn->query($sql);
     $stmt->setFetchMode(PDO::FETCH_ASSOC);
     $rows = $stmt -> fetchAll();
 
