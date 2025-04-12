@@ -1,17 +1,17 @@
 {
-    "name": "karim/e-commerce",
-    "description": "e-commerce application",
-    "require": {
-        "vlucas/phpdotenv": "^5.6"
-    },
-    "autoload": {
-        "psr-4": {
-            "Karim\\ECommerce\\": "src/"
-        }
-    },
-    "authors": [
-        {
-            "name": "karim"
-        }
-    ]
+  "name": "karim/e-commerce",
+  "description": "e-commerce application",
+  "require": {
+    "vlucas/phpdotenv": "^5.6"
+  },
+  "autoload": {
+    "psr-4": {
+      "Karim\\ECommerce\\": "./"
+    }
+  },
+  "authors": [
+    {
+      "name": "karim"
+    }
+  ]
 }

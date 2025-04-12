@@ -1,10 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Todo</title>
-        <script>
+<?php
+$header = "Tasks";
+require "views/partials/head.php";
+?>
+    <script>
             function updateTask(taskId, currentStatus) {
                 const newStatus = !currentStatus;
                 fetch('/update.php', {
@@ -22,9 +20,10 @@
                     }
                 });
             }
+
         </script>
-    </head>
-    <body>
+
+
         <table>
             <h1>My Todo</h1>
             <thead>
@@ -34,6 +33,14 @@
                 </tr>
             </thead>
             <tbody>
+        <tr
+          <td>
+            <form method="POST" action="/insert.php">
+              <input type="text" name="title"/>
+             <button type="submit">submit</button> 
+            </form>            
+          </td>
+        </tr>
                 <?php foreach ($tasks as $task): ?>
                 <tr>
                     <td><?php echo htmlspecialchars($task['title']) ?></td>
@@ -44,8 +51,9 @@
                     </td>
                 </tr>
                 <?php endforeach; ?>
+
             </tbody>
         </table>
-    </body>
-</html>
-
+ 
+<?php
+require "views/partials/footer.php";
