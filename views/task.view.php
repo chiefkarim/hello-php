@@ -1,7 +1,11 @@
 <?php
-$header = "404";
+
+$header = "Task";
 require "views/partials/head.php";
 ?>
-<h1>Page not found</h1>
+
+<textarea class="p-4" ><?php echo $task['title']; ?>
+</textarea>
+
 <?php
 require "views/partials/footer.php";

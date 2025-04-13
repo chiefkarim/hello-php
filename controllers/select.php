@@ -4,8 +4,9 @@ require_once "config.php";
 
 try {
     $database = new Database($config, $username, $password);
-    $sql = "SELECT * FROM TASKS LIMIT 10;";
-    $stmt = $database->conn->query($sql);
+    $sql = "SELECT * FROM TASKS  WHERE user_id = :user_id LIMIT 10;";
+    $stmt = $database->conn->prepare($sql);
+    $stmt->execute(["user_id" => 2]);
     $stmt->setFetchMode(PDO::FETCH_ASSOC);
     $rows = $stmt -> fetchAll();
 
