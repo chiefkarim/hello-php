@@ -5,13 +5,13 @@ require_once 'config.php';
 require_once 'Response.php';
 // Read JSON input
 
-$title = htmlspecialchars($_POST["title"]) ?? null;
+$title = trim(htmlspecialchars($_POST["title"])) ?? null;
 //Debugging logs
 error_log("Raw JSON data: $title");
 
-if (!$title) {
+if (!$title and strlen($title) === 0) {
     http_response_code(Response::NOT_FOUND);
-    echo json_encode(["error" => "please provide title for your task!"]);
+    echo json_encode(["error" => "Please provide title for your task!"]);
     exit;
 }
 
