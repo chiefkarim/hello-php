@@ -5,7 +5,7 @@ require_once 'config.php';
 require_once 'Response.php';
 // Read JSON input
 
-$title = $_POST["title"] ?? null;
+$title = htmlspecialchars($_POST["title"]) ?? null;
 //Debugging logs
 error_log("Raw JSON data: $title");
 
@@ -25,5 +25,6 @@ try {
 } catch (PDOException $e) {
     error_log($e->getMessage());
     echo json_encode(["error" => "ther was an error inserting your task"]);
-    http_response_code(Response::INTERNEL_SERVER_ERROR);
+    http_response_code(Response::INTERNEL_SERVER - ERROR);
+    exit;
 }
