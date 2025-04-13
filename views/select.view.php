@@ -35,18 +35,24 @@ require "views/partials/head.php";
         <tr>
             <td class="p-3" colspan="2">
                 <form method="POST" action="/insert.php" class="flex items-center gap-2">
-                    <input 
-                        type="text" 
+                    <textarea 
                         name="title" 
                         placeholder="New task..."
                         class="border border-gray-300 rounded px-3 py-1 focus:outline-none focus:ring-2 focus:ring-blue-500 flex-1 "
-                    />
+             >
+               <?php echo $_POST['title'] ?? ""; ?>
+               </textarea>
                     <button 
                         type="submit" 
                         class="bg-blue-500 text-white px-4 py-1 rounded hover:bg-blue-600 transition">
                         Create Note
                     </button>
                 </form>
+
+           <?php foreach ($errors as $error): ?>
+
+             <p class="py-2 text-red-500"><?php echo $error; ?></p>
+           <?php endforeach; ?>
             </td>
         </tr>
 
@@ -104,6 +110,7 @@ require "views/partials/head.php";
       e.preventDefault();
       targetForm = form;
       document.getElementById('confirmModal').classList.remove('hidden');
+
     });
   });
 
