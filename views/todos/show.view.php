@@ -1,11 +1,11 @@
 <?php
 
 $header = "Task";
-require "views/partials/head.php";
+view("partials/head.php", ["header" => $header]);
 ?>
 
-<textarea class="p-4" ><?php echo $task['title']; ?>
+<textarea class="p-4" ><?php echo $todo['title']; ?>
 </textarea>
 
 <?php
-require "views/partials/footer.php";
+view("partials/footer.php");

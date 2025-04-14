@@ -1,6 +1,6 @@
 <?php
-require_once 'Database.php';
-require_once 'config.php';
+require_once base_path('Database.php');
+require_once base_path('config.php');
 
 // Read JSON input
 $input = file_get_contents("php://input");

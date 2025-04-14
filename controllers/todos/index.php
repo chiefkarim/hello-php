@@ -1,6 +1,6 @@
 <?php
 
-require_once "config.php";
+require_once base_path("config.php");
 
 try {
     $database = new Database($config, $username, $password);
@@ -18,7 +18,7 @@ try {
         ],
         $rows
     );
-    include 'views/todos/index.view.php';
+    include base_path('views/todos/index.view.php');
 } catch (PDOExcepton $e) {
     error_log("error while getting taks! " . $e);
     die($e->getMessage());

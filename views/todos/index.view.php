@@ -1,6 +1,6 @@
 <?php
 $header = "Todos";
-require "views/partials/head.php";
+require base_path("views/partials/head.php");
 ?>
    <script>
             function updateTodo(todoId, currentStatus) {
@@ -127,4 +127,4 @@ require "views/partials/head.php";
 </script>
  
 <?php
-require "views/partials/footer.php";
+require base_path("views/partials/footer.php");

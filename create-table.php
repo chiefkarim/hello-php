@@ -1,6 +1,6 @@
 <?php
 
-require_once 'connect.php';
+require_once base_path('connect.php');
 
 $sql = 'CREATE TABLE IF NOT EXISTS TASKS(
 id INT AUTO_INCREMENT PRIMARY KEY,
