@@ -1,5 +1,7 @@
 <?php
 
+use Core\Database;
+
 require_once base_path("config.php");
 
 try {
@@ -18,7 +20,7 @@ try {
         ],
         $rows
     );
-    include base_path('views/todos/index.view.php');
+    view('todos/index.view.php', ['todos' => $todos]);
 } catch (PDOExcepton $e) {
     error_log("error while getting taks! " . $e);
     die($e->getMessage());

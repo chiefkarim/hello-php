@@ -1,5 +1,6 @@
 <?php
 
+use Core\Response;
 
 function dd($data)
 {
@@ -7,14 +8,8 @@ function dd($data)
     die();
 }
 
-function abort($status = Response::Not_FOUND)
-{
-    http_response_code($status);
-    include base_path("views/$status.php");
-    die();
-}
 
-function authorize($condition, $status = Response::Not_FOUND)
+function authorize($condition, $status = Response::NOT_FOUND)
 {
     if (!$condition) {
         abort($status);

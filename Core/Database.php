@@ -1,5 +1,10 @@
 <?php
 
+namespace Core;
+
+use PDO;
+use Core\Response;
+
 class Database
 {
     public $conn;
