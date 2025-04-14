@@ -1,17 +1,17 @@
 <?php
-$header = "Tasks";
+$header = "Todos";
 require "views/partials/head.php";
 ?>
    <script>
-            function updateTask(taskId, currentStatus) {
+            function updateTodo(todoId, currentStatus) {
                 const newStatus = !currentStatus;
-                fetch('/update.php', {
+                fetch('/todos/update', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
                     },
                 body: JSON.stringify({
-                  id:taskId,
+                  id:todoId,
                   completed:currentStatus,
                 })
                 }).then(response => {
@@ -34,14 +34,12 @@ require "views/partials/head.php";
     <tbody>
         <tr>
             <td class="p-3" colspan="2">
-                <form method="POST" action="/insert.php" class="flex items-center gap-2">
+                <form method="POST" action="/todos/insert" class="flex items-center gap-2">
                     <textarea 
                         name="title" 
-                        placeholder="New task..."
+                        placeholder="New todo..."
                         class="border border-gray-300 rounded px-3 py-1 focus:outline-none focus:ring-2 focus:ring-blue-500 flex-1 "
-             >
-               <?php echo $_POST['title'] ?? ""; ?>
-               </textarea>
+             ><?php echo $_POST['title'] ?? ""; ?></textarea>
                     <button 
                         type="submit" 
                         class="bg-blue-500 text-white px-4 py-1 rounded hover:bg-blue-600 transition">
@@ -56,37 +54,39 @@ require "views/partials/head.php";
             </td>
         </tr>
 
-        <?php foreach ($tasks as $task): ?>
-        <tr class="hover:bg-gray-50">
-            <td class="p-3">
-                <a 
-                    href="<?php echo "/task?id={$task['id']}"; ?>"
-                    class="text-blue-600 hover:underline font-medium"
-                >
-                    <?php echo $task['title']; ?>
-                </a>
-            </td>
-            <td class="p-3 flex items-center gap-2">
+        <?php foreach ($todos as $todo): ?>
+<tr class="hover:bg-gray-50 w-full">
+    <td class="p-3 w-full">
+        <div class="flex justify-between items-center w-full">
+            <a 
+                href="<?php echo "/todo?id={$todo['id']}"; ?>"
+                class="text-blue-600 hover:underline font-medium"
+            >
+                <?php echo $todo['title']; ?>
+            </a>
+            <div class="flex items-center gap-2">
                 <button 
-                    onclick="updateTask(<?php echo $task['id']; ?>, <?php echo $task['completed'] ? 0 : 1; ?>); return false;"
+                    onclick="updateTodo(<?php echo $todo['id']; ?>, <?php echo $todo['completed'] ? 0 : 1; ?>); return false;"
                     class="text-lg"
                     title="Toggle completion"
                 >
-                    <?php echo $task['completed'] ? '✅' : '⬜'; ?>
+                    <?php echo $todo['completed'] ? '✅' : '⬜'; ?>
                 </button>
-  <form method="POST" action="/task-delete.php" data-confirm>
-    <input type="hidden" name="id" value="<?php echo $task['id']; ?>">
-    <button 
-        type="submit"
-        class="text-red-500 hover:text-red-700 text-sm"
-        title="Delete note"
-    >
-        🗑️
-    </button>
-</form>
-            </td>
+                <form method="POST" action="/todos/delete" data-confirm>
+                    <input type="hidden" name="id" value="<?php echo $todo['id']; ?>">
+                    <button 
+                        type="submit"
+                        class="text-red-500 hover:text-red-700 text-sm"
+                        title="Delete note"
+                    >
+                        🗑️
+                    </button>
+                </form>
+            </div>
+        </div>
+    </td>
+</tr>
 
-        </tr>
         <?php endforeach; ?>
     </tbody>
 </table>
@@ -95,10 +95,10 @@ require "views/partials/head.php";
 <div id="confirmModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
   <div class="bg-white rounded-lg shadow-lg w-full max-w-sm p-6">
     <h2 class="text-lg font-semibold mb-4 text-gray-800">Supprimer la note</h2>
-    <p class="text-sm text-gray-600 mb-6">Es-tu sûr de vouloir supprimer cette note ? Cette action est irréversible.</p>
+    <p class="text-sm text-gray-600 mb-6">Are you sure you want to delete this note? This action is irreversible.</p>
     <div class="flex justify-end gap-2">
-      <button id="cancelBtn" class="px-4 py-1 rounded bg-gray-200 hover:bg-gray-300 text-gray-800">Annuler</button>
-      <button id="confirmBtn" class="px-4 py-1 rounded bg-red-500 hover:bg-red-600 text-white">Supprimer</button>
+      <button id="cancelBtn" class="px-4 py-1 rounded bg-gray-200 hover:bg-gray-300 text-gray-800">Cancel</button>
+      <button id="confirmBtn" class="px-4 py-1 rounded bg-red-500 hover:bg-red-600 text-white">Delete</button>
     </div>
   </div>
 </div>

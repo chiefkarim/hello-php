@@ -3,6 +3,7 @@
 require_once 'Database.php';
 require_once 'config.php';
 require_once 'Response.php';
+require_once 'Validator.php';
 // Read JSON input
 
 $title = trim(htmlspecialchars($_POST["title"])) ?? null;
@@ -11,12 +12,8 @@ error_log("Raw JSON data: $title");
 
 $errors = [];
 
-if (!$title and strlen($title) === 0) {
-    $errors[] = "Please provide title for your task!";
-}
-
-if (strlen($title) > 255) {
-    $errors[] = "Please provide less than 255 char title!";
+if (!Validator::string($title, 1, 50)) {
+    $errors[] = "Please provide title for your task with length between 1 and 50 characters!";
 }
 
 if (empty($errors)) {
@@ -26,7 +23,7 @@ if (empty($errors)) {
         $sql = 'INSERT INTO TASKS(title,user_id) values(:title,:user_id);';
         $stmt = $database->conn->prepare($sql);
         $stmt->execute([':title' => $title,":user_id" => 2]);
-        header("Location: /tasks");
+        header("Location: /todos");
         exit;
     } catch (PDOException $e) {
         error_log($e->getMessage());
@@ -35,5 +32,5 @@ if (empty($errors)) {
         exit;
     }
 } else {
-    include "controllers/select.php";
+    include "controllers/todos/index.php";
 }

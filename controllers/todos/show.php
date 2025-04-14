@@ -13,4 +13,4 @@ try {
     error_log("error while getting task!". $pe->getMessage());
     abort();
 }
-require "views/task.view.php";
+require "views/todos/show.view.php";

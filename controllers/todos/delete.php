@@ -20,7 +20,7 @@ try {
     $stmt->execute([ ':id' => $id,':user_id' => 2]);
 
     // Redirection après suppression
-    header("Location: /tasks");
+    header("Location: /todos");
     exit;
 
 } catch (PDOException $e) {
