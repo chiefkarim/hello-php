@@ -1,5 +1,4 @@
 <?php
-require_once base_path('Database.php');
 require_once base_path('config.php');
 
 // Read JSON input
