@@ -7,12 +7,6 @@ function dd($data)
     die();
 }
 
-function abort($status = Response::Not_FOUND)
-{
-    http_response_code($status);
-    include base_path("views/$status.php");
-    die();
-}
 
 function authorize($condition, $status = Response::Not_FOUND)
 {
@@ -31,4 +25,11 @@ function view($path, $arguments = [])
     extract($arguments);
 
     require base_path('/views/' . $path);
+}
+
+function abort($status = Response::Not_FOUND)
+{
+    http_response_code($status);
+    view("$status.php");
+    die();
 }
