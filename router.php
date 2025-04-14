@@ -6,8 +6,11 @@ $path = parse_url($uri)['path'];
 
 $routes = [
   "/" => "controllers/home.php",
-  "/tasks" => "controllers/select.php",
-  "/task" => "controllers/task.php",
+  "/todos" => "controllers/todos/index.php",
+  "/todo" => "controllers/todos/show.php",
+  "/todos/delete" => "controllers/todos/delete.php",
+  "/todos/update" => "controllers/todos/update.php",
+  "/todos/insert" => "controllers/todos/insert.php",
 ];
 
 if (array_key_exists($path, $routes)) {

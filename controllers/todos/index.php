@@ -10,7 +10,7 @@ try {
     $stmt->setFetchMode(PDO::FETCH_ASSOC);
     $rows = $stmt -> fetchAll();
 
-    $tasks = array_map(
+    $todos = array_map(
         fn ($row) => [
         "title" => (string) $row['title'],
         "completed" => (bool) $row['completed'],
@@ -18,7 +18,7 @@ try {
         ],
         $rows
     );
-    include 'views/select.view.php';
+    include 'views/todos/index.view.php';
 } catch (PDOExcepton $e) {
     error_log("error while getting taks! " . $e);
     die($e->getMessage());
