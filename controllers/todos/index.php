@@ -18,7 +18,7 @@ try {
         ],
         $rows
     );
-    view('todos/index.view.php');
+    view('todos/index.view.php', ['todos' => $todos]);
 } catch (PDOExcepton $e) {
     error_log("error while getting taks! " . $e);
     die($e->getMessage());

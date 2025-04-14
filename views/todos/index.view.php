@@ -1,6 +1,6 @@
 <?php
 $header = "Todos";
-view("partials/head.php");
+view("partials/head.php", ["header" => $header]);
 ?>
    <script>
             function updateTodo(todoId, currentStatus) {
