@@ -1,9 +1,9 @@
 <?php
 $header  = "Home";
-require "views/partials/head.php";
+view('partials/head.php', ["header" => $header]);
 ?>
 
 <main><h1>TODO APPLICATION</h1></main>
 
 <?php
-require "views/partials/footer.php";
+view("partials/footer.php");

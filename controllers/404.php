@@ -1,7 +1,7 @@
 <?php
 $header = "404";
-require "views/partials/head.php";
+view("partials/head.php", ["header" => $header]);
 ?>
 <h1>Page not found</h1>
 <?php
-require "views/partials/footer.php";
+view("partials/footer.php");

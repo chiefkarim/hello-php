@@ -1,9 +1,9 @@
 <?php
 
-require_once 'Database.php';
-require_once 'config.php';
-require_once 'Response.php';
-require_once 'Validator.php';
+require_once base_path('Database.php');
+require_once base_path('config.php');
+require_once base_path('Response.php');
+require_once base_path('Validator.php');
 // Read JSON input
 
 $title = trim(htmlspecialchars($_POST["title"])) ?? null;
@@ -32,5 +32,5 @@ if (empty($errors)) {
         exit;
     }
 } else {
-    include "controllers/todos/index.php";
+    include base_path("controllers/todos/index.php");
 }

@@ -1,7 +1,7 @@
 <?php
 $header = "403";
-require "views/partials/head.php";
+view("partials/head.php", ["header" => $header]);
 ?>
 <h1>you don't have acess to this page!</h1>
 <?php
-require "views/partials/footer.php";
+view("partials/footer.php");
