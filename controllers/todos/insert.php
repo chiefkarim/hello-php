@@ -1,9 +1,6 @@
 <?php
 
-require_once base_path('Database.php');
 require_once base_path('config.php');
-require_once base_path('Response.php');
-require_once base_path('Validator.php');
 // Read JSON input
 
 $title = trim(htmlspecialchars($_POST["title"])) ?? null;

@@ -1,8 +1,6 @@
 <?php
 
-require_once base_path('Database.php');
 require_once base_path('config.php');
-require_once base_path('Response.php');
 
 // Récupérer l'ID de la tâche
 $id = $_POST['id'] ?? null;
