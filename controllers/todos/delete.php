@@ -1,8 +1,10 @@
 <?php
 
+use Core\Database;
+use Core\Response;
+
 require_once base_path('config.php');
 
-// Récupérer l'ID de la tâche
 $id = $_POST['id'] ?? null;
 
 if (!$id || !is_numeric($id)) {

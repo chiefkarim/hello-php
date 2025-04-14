@@ -1,5 +1,6 @@
 <?php
 
+use Core\Response;
 
 function dd($data)
 {
@@ -8,7 +9,7 @@ function dd($data)
 }
 
 
-function authorize($condition, $status = Response::Not_FOUND)
+function authorize($condition, $status = Response::NOT_FOUND)
 {
     if (!$condition) {
         abort($status);
@@ -25,11 +26,4 @@ function view($path, $arguments = [])
     extract($arguments);
 
     require base_path('/views/' . $path);
-}
-
-function abort($status = Response::Not_FOUND)
-{
-    http_response_code($status);
-    view("$status.php");
-    die();
 }

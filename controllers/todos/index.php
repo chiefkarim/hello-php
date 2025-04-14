@@ -1,5 +1,7 @@
 <?php
 
+use Core\Database;
+
 require_once base_path("config.php");
 
 try {

@@ -1,10 +1,13 @@
 <?php
 
+use Core\Database;
+use Core\Response;
+use Core\Validator;
+
 require_once base_path('config.php');
-// Read JSON input
 
 $title = trim(htmlspecialchars($_POST["title"])) ?? null;
-//Debugging logs
+
 error_log("Raw JSON data: $title");
 
 $errors = [];
