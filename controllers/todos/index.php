@@ -20,7 +20,7 @@ try {
         ],
         $rows
     );
-    view('todos/index.view.php', ['todos' => $todos,"errors" => $errors]);
+    view('todos/index.view.php', ['todos' => $todos,"errors" => $errors ?? []]);
 } catch (PDOExcepton $e) {
     error_log("error while getting taks! " . $e);
     die($e->getMessage());

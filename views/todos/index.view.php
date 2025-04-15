@@ -5,8 +5,8 @@ view("partials/head.php", ["header" => $header]);
    <script>
             function updateTodo(todoId, currentStatus) {
                 const newStatus = !currentStatus;
-                fetch('/todos/update', {
-                    method: 'POST',
+                fetch('/todos', {
+                    method: 'PATCH',
                     headers: {
                         'Content-Type': 'application/json'
                     },
@@ -34,7 +34,8 @@ view("partials/head.php", ["header" => $header]);
     <tbody>
         <tr>
             <td class="p-3" colspan="2">
-                <form method="POST" action="/todos/insert" class="flex items-center gap-2">
+                <form method="POST" action="/todos" class="flex items-center gap-2">
+ <input name="_method" type="hidden" value="POST"/>
                     <textarea 
                         name="title" 
                         placeholder="New todo..."
@@ -48,7 +49,6 @@ view("partials/head.php", ["header" => $header]);
                 </form>
 
            <?php foreach ($errors as $error): ?>
-
              <p class="py-2 text-red-500"><?php echo $error; ?></p>
            <?php endforeach; ?>
             </td>
@@ -72,8 +72,9 @@ view("partials/head.php", ["header" => $header]);
                 >
                     <?php echo $todo['completed'] ? '✅' : '⬜'; ?>
                 </button>
-                <form method="POST" action="/todos/delete" data-confirm>
+                <form method="POST" action="/todos" data-confirm>
                     <input type="hidden" name="id" value="<?php echo $todo['id']; ?>">
+                    <input type="hidden" name="_method" value="DELETE">
                     <button 
                         type="submit"
                         class="text-red-500 hover:text-red-700 text-sm"
@@ -127,4 +128,4 @@ view("partials/head.php", ["header" => $header]);
 </script>
  
 <?php
-views("partials/footer.php");
+view("partials/footer.php");
