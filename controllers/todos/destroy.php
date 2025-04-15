@@ -2,15 +2,15 @@
 
 use Core\Database;
 use Core\Response;
+use Core\Validator;
 
 require_once base_path('config.php');
 
-$id = $_POST['id'] ?? null;
+$id = htmlspecialchars(trim($_POST['id'])) ?? null;
 
-if (!$id || !is_numeric($id)) {
-    http_response_code(Response::BAD_REQUEST);
-    echo json_encode(["error" => "ID de tâche invalide."]);
-    exit;
+if (!Validator::number($id)) {
+    error_log("Error: failed to update todo due to missing parameters");
+    abort(Response::BAD_REQUEST, 400);
 }
 
 try {

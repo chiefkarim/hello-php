@@ -2,13 +2,14 @@
 
 use Core\Database;
 use Core\Response;
+use Core\Validator;
 
 require_once base_path('config.php');
 
 $id = htmlspecialchars(trim($_POST['id'])) ?? null;
 $completed = htmlspecialchars(trim($_POST['completed'])) ?? null;
 
-if ($id == null || $completed == null) {
+if (!Validator::number($id) || !Validator::number($completed)) {
     error_log("Error: failed to update todo due to missing parameters");
     abort(Response::BAD_REQUEST, 400);
 }
