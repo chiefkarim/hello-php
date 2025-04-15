@@ -1,6 +1,6 @@
 <?php
 
-use Core\Database;
+use Core\App;
 use Core\Response;
 use Core\Validator;
 
@@ -19,7 +19,7 @@ if (!Validator::string($title, 1, 50)) {
 if (empty($errors)) {
 
     try {
-        $database = new Database($config, $username, $password);
+        $database = App::resolve(\Core\Database::class);
         $sql = 'INSERT INTO TASKS(title,user_id) values(:title,:user_id);';
         $stmt = $database->conn->prepare($sql);
         $stmt->execute([':title' => $title,":user_id" => 2]);

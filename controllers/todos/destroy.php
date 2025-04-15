@@ -1,6 +1,6 @@
 <?php
 
-use Core\Database;
+use Core\App;
 use Core\Response;
 use Core\Validator;
 
@@ -14,7 +14,7 @@ if (!Validator::number($id)) {
 }
 
 try {
-    $database = new Database($config, $username, $password);
+    $database = App::resolve(\Core\Database::class);
     $sql = 'DELETE FROM TASKS WHERE id = :id AND user_id = :user_id';
     $stmt = $database->conn->prepare($sql);
     $stmt->execute([ ':id' => $id,':user_id' => 2]);

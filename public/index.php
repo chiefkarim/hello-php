@@ -11,6 +11,7 @@ spl_autoload_register(
     }
 );
 
+require BASE_PATH . "bootstrap.php";
 function abort($status = Response::NOT_FOUND)
 {
     http_response_code($status);
