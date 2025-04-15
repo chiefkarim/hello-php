@@ -2,28 +2,6 @@
 $header = "Todos";
 view("partials/head.php", ["header" => $header]);
 ?>
-   <script>
-            function updateTodo(todoId, currentStatus) {
-                const newStatus = !currentStatus;
-                fetch('/todos', {
-                    method: 'PATCH',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                body: JSON.stringify({
-                  id:todoId,
-                  completed:currentStatus,
-                })
-                }).then(response => {
-                    if (response.ok) {
-                        location.reload();
-                    }
-                });
-            }
-
-        </script>
-
-
 <table class="w-full border-collapse text-left">
     <thead class="bg-gray-100 border-b">
         <tr>
@@ -65,13 +43,18 @@ view("partials/head.php", ["header" => $header]);
                 <?php echo $todo['title']; ?>
             </a>
             <div class="flex items-center gap-2">
-                <button 
-                    onclick="updateTodo(<?php echo $todo['id']; ?>, <?php echo $todo['completed'] ? 0 : 1; ?>); return false;"
-                    class="text-lg"
-                    title="Toggle completion"
-                >
+<form method="POST" action="/todos" >
+                    <input type="hidden" name="id" value="<?php echo $todo['id']; ?>">
+                    <input type="hidden" name="_method" value="PATCH">
+                    <input type="hidden" name="completed" value="<?php echo $todo['completed'] ? 0 : 1; ?>">
+                    <button 
+                        type="submit"
+                        class="text-red-500 hover:text-red-700 text-sm"
+                        title="Delete note"
+                    >
                     <?php echo $todo['completed'] ? '✅' : '⬜'; ?>
-                </button>
+                    </button>
+                </form>
                 <form method="POST" action="/todos" data-confirm>
                     <input type="hidden" name="id" value="<?php echo $todo['id']; ?>">
                     <input type="hidden" name="_method" value="DELETE">

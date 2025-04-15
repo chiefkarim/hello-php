@@ -10,4 +10,15 @@ class Validator
         return $parsed >= $min and $parsed <= $max;
 
     }
+    public static function number($num)
+    {
+
+        if ($num == null || !is_numeric($num)) {
+            error_log($num);
+            return false;
+        } else {
+            return true;
+        }
+
+    }
 }
