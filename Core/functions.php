@@ -9,7 +9,7 @@ function dd($data)
 }
 
 
-function authorize($condition, $status = Response::NOT_FOUND)
+function authorize($condition, $status = Response::NOT_AUTHORIZED)
 {
     if (!$condition) {
         abort($status);

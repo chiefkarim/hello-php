@@ -1,10 +1,11 @@
 <?php
 
-return $routes = [
-  "/" => "controllers/home.php",
-  "/todos" => "controllers/todos/index.php",
-  "/todo" => "controllers/todos/show.php",
-  "/todos/delete" => "controllers/todos/delete.php",
-  "/todos/update" => "controllers/todos/update.php",
-  "/todos/insert" => "controllers/todos/insert.php",
-];
+$router->get("/", "controllers/home.php");
+
+$router->get("/todos", "controllers/todos/index.php");
+$router->delete("/todos", "controllers/todos/delete.php");
+$router->patch("/todos", "controllers/todos/update.php");
+$router->post("/todos", "controllers/todos/insert.php");
+
+
+$router->get("/todo", "controllers/todos/show.php");

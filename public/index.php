@@ -11,4 +11,20 @@ spl_autoload_register(
     }
 );
 
-require base_path("Core/router.php");
+function abort($status = Response::NOT_FOUND)
+{
+    http_response_code($status);
+    view("$status.php");
+    die();
+}
+
+$uri = parse_url($_SERVER["REQUEST_URI"])['path'];
+
+
+$router = new \Core\Router();
+
+$routes = require base_path("routes.php");
+
+$method = $_POST['_method'] ?? $_SERVER['REQUEST_METHOD'];
+
+$router->route($uri, $method);
