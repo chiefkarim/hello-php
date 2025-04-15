@@ -1,8 +1,8 @@
 <?php
 
-use Core\Database;
 use Core\Response;
 use Core\Validator;
+use Core\App;
 
 require_once base_path('config.php');
 
@@ -15,7 +15,7 @@ if (!Validator::number($id) || !Validator::number($completed)) {
 }
 
 try {
-    $database = new Database($config, $username, $password);
+    $database = App::resolve(\Core\Database::class);
     $sql = 'UPDATE TASKS SET completed = :completed WHERE id = :id;';
     $stmt = $database->conn->prepare($sql);
     $stmt->execute([":completed" => $completed, ":id" => $id]);
