@@ -37,7 +37,7 @@ try {
         $sql = "INSERT INTO users (email,password) VALUES(:email,:password);";
         $stmt = $database->query($sql, ["email" => $email,"password" => $password]);
         $_SESSION['email'] = $email;
-        header("Location: /");
+        header("Location: /todos");
     }
 
 } catch (PDOException  $pe) {
