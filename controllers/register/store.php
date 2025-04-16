@@ -37,7 +37,9 @@ try {
         $password = password_hash($password, PASSWORD_BCRYPT);
         $sql = "INSERT INTO users (email,password) VALUES(:email,:password);";
         $stmt = $database->query($sql, ["email" => $email,"password" => $password]);
-        $_SESSION['email'] = $email;
+
+        error_log("user" .  json_encode($stmt));
+        $_SESSION['user'] = ["email" => $email,"id" => $stmt['id']];
         header("Location: /todos");
     }
 

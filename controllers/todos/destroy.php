@@ -14,7 +14,8 @@ if (!Validator::number($id)) {
 try {
     $database = App::resolve(\Core\Database::class);
     $sql = 'DELETE FROM TASKS WHERE id = :id AND user_id = :user_id';
-    $stmt = $database->query($sql, [ ':id' => $id,':user_id' => 2]);
+    $user_id = $_SESSION['user']['id'];
+    $stmt = $database->query($sql, [ ':id' => $id,':user_id' => $user_id]);
 
     // Redirection après suppression
     header("Location: /todos");
@@ -22,6 +23,6 @@ try {
 
 } catch (PDOException $e) {
     error_log($e->getMessage());
-    abort(Response::INTERNAL_SERVER_ERROR);
+    abort(Response::INTERNEL_SERVER_ERROR);
     exit;
 }

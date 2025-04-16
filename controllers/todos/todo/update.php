@@ -14,7 +14,7 @@ if (!Validator::number($id)) {
 try {
     $database = App::resolve(\Core\Database::class);
     $todo = $database->query("SELECT * FROM TASKS WHERE id=:id", ["id" => $id])->fetchOrAbort();
-    $currentUserId = 2;
+    $currentUserId = $_SESSION['user']['id'];
     error_log(json_encode($title));
     authorize($todo['user_id'] === $currentUserId, Response::NOT_AUTHORIZED);
 } catch (PDOException  $pe) {
