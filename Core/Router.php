@@ -2,8 +2,6 @@
 
 namespace Core;
 
-use Core\middleware\Auth;
-use Core\middleware\Guest;
 use Core\middleware\Middleware;
 
 class Router
@@ -62,8 +60,7 @@ class Router
             if ($route['uri'] === $uri and $route['method'] === strtoupper($method)) {
                 // if middleware == auth
                 if ($route['middleware']) {
-                    $middleware = Middleware::MAP[$route['middleware']];
-                    (new $middleware())->handle();
+                    Middleware::resolve($route['middleware']);
                 }
 
                 //middleware == null
