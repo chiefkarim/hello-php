@@ -26,8 +26,7 @@ if (empty($errors)) {
         exit;
     } catch (PDOException $e) {
         error_log($e->getMessage());
-        echo json_encode(["error" => "ther was an error inserting your task"]);
-        http_response_code(Response::INTERNEL_SERVER - ERROR);
+        abort(Response::INTERNEL_SERVER_ERROR);
         exit;
     }
 } else {

@@ -13,7 +13,8 @@ try {
     $currentUserId = 2;
     authorize($todo['user_id'] === $currentUserId, Response::NOT_AUTHORIZED);
 } catch (PDOException  $pe) {
-    error_log("error while getting task!". $pe->getMessage());
-    abort();
+    error_log($e->getMessage());
+    todo(Response::INTERNEL_SERVER_ERROR);
+    exit;
 }
 view("todos/todo/show.view.php", ["todo" => $todo]);

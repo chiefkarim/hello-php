@@ -22,7 +22,7 @@ try {
     exit;
 
 } catch (PDOException $e) {
-    error_log("DB Error: " . $e->getMessage());
+    error_log($e->getMessage());
+    abort(Response::INTERNEL_SERVER_ERROR);
+    exit;
 }
-?>
-

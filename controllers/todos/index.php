@@ -19,8 +19,9 @@ try {
     );
     view('todos/index.view.php', ['todos' => $todos,"errors" => $errors ?? []]);
 } catch (PDOExcepton $e) {
-    error_log("error while getting taks! " . $e);
-    die($e->getMessage());
+    error_log($e->getMessage());
+    abort(Response::INTERNEL_SERVER_ERROR);
+    exit;
 }
 ?>
 

@@ -17,8 +17,9 @@ try {
     error_log(json_encode($title));
     authorize($todo['user_id'] === $currentUserId, Response::NOT_AUTHORIZED);
 } catch (PDOException  $pe) {
-    error_log("error while getting task!". $pe->getMessage());
-    abort();
+    error_log($e->getMessage());
+    abort(Response::INTERNEL_SERVER_ERROR);
+    exit;
 }
 
 if (!Validator::string($title)) {
@@ -35,7 +36,7 @@ try {
     exit;
 
 } catch (PDOException $e) {
-    error_log("DB Error: " . $e->getMessage());
+    error_log($e->getMessage());
+    abort(Response::INTERNEL_SERVER_ERROR);
+    exit;
 }
-?>
-
