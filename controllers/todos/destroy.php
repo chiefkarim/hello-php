@@ -16,8 +16,7 @@ if (!Validator::number($id)) {
 try {
     $database = App::resolve(\Core\Database::class);
     $sql = 'DELETE FROM TASKS WHERE id = :id AND user_id = :user_id';
-    $stmt = $database->conn->prepare($sql);
-    $stmt->execute([ ':id' => $id,':user_id' => 2]);
+    $stmt = $database->query($sql, [ ':id' => $id,':user_id' => 2]);
 
     // Redirection après suppression
     header("Location: /todos");
@@ -25,7 +24,6 @@ try {
 
 } catch (PDOException $e) {
     error_log($e->getMessage());
-    http_response_code(Response::INTERNAL_SERVER_ERROR);
-    echo json_encode(["error" => "Une erreur est survenue lors de la suppression."]);
+    abort(Response::INTERNAL_SERVER_ERROR);
     exit;
 }

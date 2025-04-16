@@ -19,7 +19,7 @@ class Database
             die('Could not connecto to database' . $config['dbname'] . ": " . $pe->getMessage());
         }
     }
-    public function query($sql, $params)
+    public function query($sql, $params = [])
     {
         $stmt = $this->conn->prepare($sql);
         $stmt->execute($params);
@@ -38,5 +38,9 @@ class Database
             abort(Response::NOT_FOUND);
         }
         return $data;
+    }
+    public function fetchAll()
+    {
+        return  $this->statment->fetchAll();
     }
 }

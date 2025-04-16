@@ -3,11 +3,10 @@
 use Core\App;
 
 try {
+
     $database = App::resolve(\Core\Database::class);
     $sql = "SELECT * FROM TASKS  WHERE user_id = :user_id LIMIT 10;";
-    $stmt = $database->conn->prepare($sql);
-    $stmt->execute(["user_id" => 2]);
-    $stmt->setFetchMode(PDO::FETCH_ASSOC);
+    $stmt = $database->query($sql, ["user_id" => 2]);
     $rows = $stmt -> fetchAll();
 
     $todos = array_map(
@@ -20,8 +19,9 @@ try {
     );
     view('todos/index.view.php', ['todos' => $todos,"errors" => $errors ?? []]);
 } catch (PDOExcepton $e) {
-    error_log("error while getting taks! " . $e);
-    die($e->getMessage());
+    error_log($e->getMessage());
+    abort(Response::INTERNEL_SERVER_ERROR);
+    exit;
 }
 ?>
 
