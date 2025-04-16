@@ -9,7 +9,7 @@ class Router
     public function add($uri, $method, $controller)
     {
 
-        $this->$routes[] = [
+        $this->routes[] = [
         "uri" => $uri,
         "method" => $method,
         "controller" => $controller
@@ -43,7 +43,7 @@ class Router
 
     public function route($uri, $method)
     {
-        foreach ($this->$routes as $route) {
+        foreach ($this->routes as $route) {
             if ($route['uri'] === $uri and $route['method'] === strtoupper($method)) {
                 return include base_path($route['controller']);
             }

@@ -16,8 +16,7 @@ if (!Validator::number($id)) {
 try {
     $database = App::resolve(\Core\Database::class);
     $sql = 'DELETE FROM TASKS WHERE id = :id AND user_id = :user_id';
-    $stmt = $database->conn->prepare($sql);
-    $stmt->execute([ ':id' => $id,':user_id' => 2]);
+    $stmt = $database->query($sql, [ ':id' => $id,':user_id' => 2]);
 
     // Redirection après suppression
     header("Location: /todos");

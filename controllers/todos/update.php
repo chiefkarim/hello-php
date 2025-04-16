@@ -17,8 +17,7 @@ if (!Validator::number($id) || !Validator::number($completed)) {
 try {
     $database = App::resolve(\Core\Database::class);
     $sql = 'UPDATE TASKS SET completed = :completed WHERE id = :id;';
-    $stmt = $database->conn->prepare($sql);
-    $stmt->execute([":completed" => $completed, ":id" => $id]);
+    $stmt = $database->query($sql, [":completed" => $completed, ":id" => $id]);
     include base_path('controllers/todos/index.php');
     exit;
 

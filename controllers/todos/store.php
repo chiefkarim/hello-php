@@ -21,8 +21,7 @@ if (empty($errors)) {
     try {
         $database = App::resolve(\Core\Database::class);
         $sql = 'INSERT INTO TASKS(title,user_id) values(:title,:user_id);';
-        $stmt = $database->conn->prepare($sql);
-        $stmt->execute([':title' => $title,":user_id" => 2]);
+        $stmt = $database->query($sql, [':title' => $title,":user_id" => 2]);
         header("Location: /todos");
         exit;
     } catch (PDOException $e) {
