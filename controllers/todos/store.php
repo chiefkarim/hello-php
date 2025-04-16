@@ -17,12 +17,13 @@ if (empty($errors)) {
     try {
         $database = App::resolve(\Core\Database::class);
         $sql = 'INSERT INTO TASKS(title,user_id) values(:title,:user_id);';
-        $stmt = $database->query($sql, [':title' => $title,":user_id" => 2]);
+        $id = $_SESSION['user']['id'];
+        $stmt = $database->query($sql, [':title' => $title,":user_id" => $id ]);
         header("Location: /todos");
         exit;
     } catch (PDOException $e) {
         error_log($e->getMessage());
-        abort(Response::INTERNEL_SERVER_ERROR);
+        abort(Response::INTERNAL_SERVER_ERROR);
         exit;
     }
 } else {

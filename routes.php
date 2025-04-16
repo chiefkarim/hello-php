@@ -13,3 +13,6 @@ $router->patch("/todo", "controllers/todos/todo/update.php")->middleware("auth")
 
 $router->get("/register", "controllers/register/index.php")->middleware("guest");
 $router->post("/register", "controllers/register/store.php")->middleware("guest");
+
+$router->get("/login", "controllers/login/create.php")->middleware("guest");
+$router->post("/login", "controllers/login/store.php")->middleware("guest");

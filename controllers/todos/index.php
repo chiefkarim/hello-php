@@ -3,10 +3,10 @@
 use Core\App;
 
 try {
-
     $database = App::resolve(\Core\Database::class);
     $sql = "SELECT * FROM TASKS  WHERE user_id = :user_id LIMIT 10;";
-    $stmt = $database->query($sql, ["user_id" => 2]);
+    $id = $_SESSION['user']['id'];
+    $stmt = $database->query($sql, ["user_id" => $id]);
     $rows = $stmt -> fetchAll();
 
     $todos = array_map(
@@ -17,7 +17,7 @@ try {
         ],
         $rows
     );
-    view('todos/index.view.php', ['todos' => $todos,"errors" => $errors ?? []]);
+    view('todos/index.view.php', ['todos' => $todos,"errors" => []]);
 } catch (PDOExcepton $e) {
     error_log($e->getMessage());
     abort(Response::INTERNEL_SERVER_ERROR);

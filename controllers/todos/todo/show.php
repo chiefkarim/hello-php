@@ -7,7 +7,7 @@ try {
     $database = App::resolve(\Core\Database::class);
     $id = $_GET['id'];
     $todo = $database->query("SELECT * FROM TASKS WHERE id=:id", ["id" => $id])->fetchOrAbort();
-    $currentUserId = 2;
+    $currentUserId = $_SESSION['user']['id'];
     authorize($todo['user_id'] === $currentUserId, Response::NOT_AUTHORIZED);
 } catch (PDOException  $pe) {
     error_log($e->getMessage());
