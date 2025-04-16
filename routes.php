@@ -10,3 +10,6 @@ $router->post("/todos", "controllers/todos/store.php");
 
 $router->get("/todo", "controllers/todos/todo/show.php");
 $router->patch("/todo", "controllers/todos/todo/update.php");
+
+$router->get("/register", "controllers/register/index.php");
+$router->post("/register", "controllers/register/store.php");
