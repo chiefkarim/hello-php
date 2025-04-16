@@ -34,10 +34,11 @@ try {
         view("register/index.view.php", ["header" => "Register","errors" => $errors,"email" => $email]);
     } else {
         // if email doesn't exist store it in the database
+        $password = password_hash($password, PASSWORD_BCRYPT);
         $sql = "INSERT INTO users (email,password) VALUES(:email,:password);";
         $stmt = $database->query($sql, ["email" => $email,"password" => $password]);
         $_SESSION['email'] = $email;
-        header("Location: /");
+        header("Location: /todos");
     }
 
 } catch (PDOException  $pe) {
