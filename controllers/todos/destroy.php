@@ -4,8 +4,6 @@ use Core\App;
 use Core\Response;
 use Core\Validator;
 
-require_once base_path('config.php');
-
 $id = htmlspecialchars(trim($_POST['id'])) ?? null;
 
 if (!Validator::number($id)) {

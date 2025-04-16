@@ -4,8 +4,6 @@ use Core\Response;
 use Core\Validator;
 use Core\App;
 
-require_once base_path('config.php');
-
 $id = htmlspecialchars(trim($_POST['id'])) ?? null;
 $completed = htmlspecialchars(trim($_POST['completed'])) ?? null;
 
@@ -20,7 +18,6 @@ try {
     $stmt = $database->query($sql, [":completed" => $completed, ":id" => $id]);
     include base_path('controllers/todos/index.php');
     exit;
-
 } catch (PDOException $e) {
     error_log($e->getMessage());
     abort(Response::INTERNEL_SERVER_ERROR);
