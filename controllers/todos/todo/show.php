@@ -3,9 +3,6 @@
 use Core\App;
 use Core\Response;
 
-require base_path("config.php");
-
-
 try {
     $database = App::resolve(\Core\Database::class);
     $id = $_GET['id'];
@@ -14,7 +11,6 @@ try {
     authorize($todo['user_id'] === $currentUserId, Response::NOT_AUTHORIZED);
 } catch (PDOException  $pe) {
     error_log($e->getMessage());
-    todo(Response::INTERNEL_SERVER_ERROR);
-    exit;
+    aort(Response::INTERNEL_SERVER_ERROR);
 }
 view("todos/todo/show.view.php", ["todo" => $todo]);

@@ -4,11 +4,7 @@ use Core\App;
 use Core\Response;
 use Core\Validator;
 
-require_once base_path('config.php');
-
 $title = trim(htmlspecialchars($_POST["title"])) ?? null;
-
-error_log("Raw JSON data: $title");
 
 $errors = [];
 

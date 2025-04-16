@@ -7,6 +7,7 @@ use Core\App;
 $id = htmlspecialchars(trim($_POST['id'])) ?? null;
 $title = htmlspecialchars(trim($_POST['title'])) ?? null;
 $errors = [];
+
 if (!Validator::number($id)) {
     abort(Response::NOT_FOUND);
 }
