@@ -2,14 +2,14 @@
 
 $router->get("/", "controllers/home.php");
 
-$router->get("/todos", "controllers/todos/index.php");
-$router->delete("/todos", "controllers/todos/destroy.php");
-$router->patch("/todos", "controllers/todos/update.php");
-$router->post("/todos", "controllers/todos/store.php");
+$router->get("/todos", "controllers/todos/index.php")->middleware("auth");
+$router->delete("/todos", "controllers/todos/destroy.php")->middleware("auth");
+$router->patch("/todos", "controllers/todos/update.php")->middleware("auth");
+$router->post("/todos", "controllers/todos/store.php")->middleware("auth");
 
 
-$router->get("/todo", "controllers/todos/todo/show.php");
-$router->patch("/todo", "controllers/todos/todo/update.php");
+$router->get("/todo", "controllers/todos/todo/show.php")->middleware("auth");
+$router->patch("/todo", "controllers/todos/todo/update.php")->middleware("auth");
 
-$router->get("/register", "controllers/register/index.php");
-$router->post("/register", "controllers/register/store.php");
+$router->get("/register", "controllers/register/index.php")->middleware("guest");
+$router->post("/register", "controllers/register/store.php")->middleware("guest");
