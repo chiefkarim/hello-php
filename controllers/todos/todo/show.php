@@ -16,4 +16,4 @@ try {
     error_log("error while getting task!". $pe->getMessage());
     abort();
 }
-view("todos/show.view.php", ["todo" => $todo]);
+view("todos/todo/show.view.php", ["todo" => $todo]);

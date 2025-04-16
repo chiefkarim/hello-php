@@ -11,7 +11,8 @@ spl_autoload_register(
     }
 );
 
-require BASE_PATH . "bootstrap.php";
+require base_path("bootstrap.php");
+
 function abort($status = Response::NOT_FOUND)
 {
     http_response_code($status);
@@ -20,7 +21,6 @@ function abort($status = Response::NOT_FOUND)
 }
 
 $uri = parse_url($_SERVER["REQUEST_URI"])['path'];
-
 
 $router = new \Core\Router();
 
