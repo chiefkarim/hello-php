@@ -21,6 +21,7 @@ if (!empty($errors)) {
 }
 
 
+error_log("[DEBUG] validated " . $email . " config:" . json_encode([$config, $password, $username]));
 try {
 
     // check if email exisist
@@ -28,11 +29,15 @@ try {
     $sql = "SELECT * FROM users WHERE email=:email;";
     $stmt = $database->query($sql, ["email" => $email])->statment;
     $user = $stmt->fetch();
-
+    error_log("[DEBUG] " . json_encode($user));
     if ($user) {
         // check if password matches
         if (password_verify($password, $user['password'])) {
+
+            error_log("[DEBUG] password correct" . json_encode($user));
             $_SESSION['user'] = ["id" => $user['id'],"email" => $email];
+
+            error_log("[DEBUG]session set " . json_encode($user));
             header("Location: /todos");
             exit();
         }
