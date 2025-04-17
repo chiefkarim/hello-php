@@ -18,12 +18,11 @@ if (!Validator::string($password)) {
 
 // if errors exist return to the user with the data he submited
 if (!empty($errors)) {
-    view("register/index.view.php", ["header" => "Register","errors" => $errors,"email" => $email]);
-    exit;
+    return  view("register/index.view.php", ["header" => "Register","errors" => $errors,"email" => $email]);
 }
 
 
-//  if email already exist and return error
+//  if email already exist
 try {
     $database = App::resolve(\Core\Database::class);
     $sql = "SELECT COUNT(*) FROM users WHERE email=:email;";
@@ -32,12 +31,14 @@ try {
     if ($count > 0) {
         $errors[] = "Email laready exists please login or choose another email!";
         return view("register/index.view.php", ["header" => "Register","errors" => $errors,"email" => $email]);
-    }          // if email doesn't exist store it in the database
+    }
+    // if email doesn't exist store it in the database
     $password = password_hash($password, PASSWORD_BCRYPT);
     $sql = "INSERT INTO users (email,password) VALUES(:email,:password);";
-    $stmt = $database->query($sql, ["email" => $email,"password" => $password]);
+    $stmt = $database->query($sql, ["email" => $email,"password" => $password])->conn;
 
-    $_SESSION['user'] = ["email" => $email,"id" => $stmt['id']];
+    $userId = $stmt->lastInsertId();
+    $_SESSION['user'] = ["email" => $email,"id" => $userId];
     header("Location: /todos");
     exit();
 

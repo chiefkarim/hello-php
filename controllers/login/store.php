@@ -31,8 +31,8 @@ try {
 
     if ($user) {
         // check if password matches
-        if (password_verify($password, $data['password'])) {
-            $_SESSION['user'] = ["id" => $data['id'],"email" => $email];
+        if (password_verify($password, $user['password'])) {
+            $_SESSION['user'] = ["id" => $user['id'],"email" => $email];
             header("Location: /todos");
             exit();
         }
