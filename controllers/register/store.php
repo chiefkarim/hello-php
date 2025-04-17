@@ -31,17 +31,15 @@ try {
     $count = $stmt->fetchColumn();
     if ($count > 0) {
         $errors[] = "Email laready exists please login or choose another email!";
-        view("register/index.view.php", ["header" => "Register","errors" => $errors,"email" => $email]);
-    } else {
-        // if email doesn't exist store it in the database
-        $password = password_hash($password, PASSWORD_BCRYPT);
-        $sql = "INSERT INTO users (email,password) VALUES(:email,:password);";
-        $stmt = $database->query($sql, ["email" => $email,"password" => $password]);
+        return view("register/index.view.php", ["header" => "Register","errors" => $errors,"email" => $email]);
+    }          // if email doesn't exist store it in the database
+    $password = password_hash($password, PASSWORD_BCRYPT);
+    $sql = "INSERT INTO users (email,password) VALUES(:email,:password);";
+    $stmt = $database->query($sql, ["email" => $email,"password" => $password]);
 
-        error_log("user" .  json_encode($stmt));
-        $_SESSION['user'] = ["email" => $email,"id" => $stmt['id']];
-        header("Location: /todos");
-    }
+    $_SESSION['user'] = ["email" => $email,"id" => $stmt['id']];
+    header("Location: /todos");
+    exit();
 
 } catch (PDOException  $pe) {
     erro_log($pe);
