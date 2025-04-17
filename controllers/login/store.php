@@ -43,7 +43,7 @@ try {
     exit();
 
 } catch (PDOException  $pe) {
-    erro_log($pe);
+    error_log($pe);
     abort(Response::INTERNAL_SERVER_ERROR);
 }
 
