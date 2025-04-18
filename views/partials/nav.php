@@ -1,3 +1,5 @@
+
+
 <nav class="bg-gray-800">
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
     <div class="flex h-16 items-center justify-between">
@@ -7,12 +9,12 @@
         </div>
         <div class="hidden md:block">
           <div class="ml-10 flex items-baseline space-x-4">
-            <a href="/" class="rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white" aria-current="page">Home</a>
+            <a href="/" class="<?= isUri('/') ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white' ?> rounded-md px-3 py-2 text-sm font-medium">Home</a>
             <?php if (isset($_SESSION['user']) && $_SESSION['user']) : ?>
-              <a href="/todos" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Todos</a>
+              <a href="/todos" class="<?= isUri('/todos') ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white' ?> rounded-md px-3 py-2 text-sm font-medium">Todos</a>
             <?php else : ?>
-              <a href="/register" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Register</a>
-              <a href="/login" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Login</a>
+              <a href="/register" class="<?= isUri('/register') ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white' ?> rounded-md px-3 py-2 text-sm font-medium">Register</a>
+              <a href="/login" class="<?= isUri('/login') ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white' ?> rounded-md px-3 py-2 text-sm font-medium">Login</a>
             <?php endif; ?>
           </div>
         </div>
@@ -71,12 +73,12 @@
 
   <div class="md:hidden" id="mobile-menu">
     <div class="space-y-1 px-2 pt-2 pb-3 sm:px-3">
-      <a href="/" class="block rounded-md bg-gray-900 px-3 py-2 text-base font-medium text-white">Home</a>
+      <a href="/" class="<?= isUri('/') ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white' ?> block rounded-md px-3 py-2 text-base font-medium">Home</a>
       <?php if (isset($_SESSION['user']) && $_SESSION['user']) : ?>
-        <a href="/todos" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Todos</a>
+        <a href="/todos" class="<?= isUri('/todos') ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white' ?> block rounded-md px-3 py-2 text-base font-medium">Todos</a>
       <?php else : ?>
-        <a href="/register" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Register</a>
-        <a href="/login" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Login</a>
+        <a href="/register" class="<?= isUri('/register') ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white' ?> block rounded-md px-3 py-2 text-base font-medium">Register</a>
+        <a href="/login" class="<?= isUri('/login') ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white' ?> block rounded-md px-3 py-2 text-base font-medium">Login</a>
       <?php endif; ?>
     </div>
 

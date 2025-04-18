@@ -37,6 +37,9 @@ function logout()
     session_destroy();
     //remove user cookie
     setcookie(session_name(), '', time() - 4200, $params['path'], $params['domain'], $params['secure'], $params['httponly']);
+}
 
-
+function isUri(string $pathToMatch): bool
+{
+    return $_SERVER['REQUEST_URI'] === $pathToMatch;
 }
