@@ -2,4 +2,4 @@
 
 $header = "Login";
 
-view("login/create.view.php");
+view("login/create.view.php", ["errors" => [],"header" => $header,"email" => null]);
