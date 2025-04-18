@@ -11,12 +11,14 @@ class Database
     public $statment;
     public function __construct($config, $username, $password)
     {
+        //TODO:replace pdo with another connector to handle production errors properly
         try {
             $dsn = 'mysql:' . http_build_query($config, "", ";");
-            $this-> conn = new PDO($dsn, $username, $password);
+            $this-> conn = new PDO($dsn, $username, $password, [ PDO::ATTR_TIMEOUT => 5]);
             error_log("Connected to database {$config['dbname']} at {$config['host']} successfully.");
         } catch (PDOException $pe) {
-            die('Could not connecto to database' . $config['dbname'] . ": " . $pe->getMessage());
+            error_log('Could not connecto to database' . $config['dbname'] . ": " . $pe->getMessage());
+            abort(Response::INTERNAL_SERVER_ERROR);
         }
     }
     public function query($sql, $params = [])
