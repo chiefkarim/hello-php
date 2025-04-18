@@ -1,8 +1,8 @@
 <?php
 
 $header = "Register";
-if ($_SESSION['email']) {
+if (isset($_SESSION['email'])) {
     header("Location: /");
 }
 
-view("register/index.view.php", ["errors" => $errors]);
+view("register/index.view.php", ["errors" => [],"header" => $header,"email" => null]);
