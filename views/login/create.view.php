@@ -69,5 +69,3 @@ view("partials/head.php", ["header" => $header]);
 
 <?php
 view("partials/footer.php");
-?>
-

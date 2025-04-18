@@ -13,4 +13,4 @@ try {
     error_log($e->getMessage());
     aort(Response::INTERNEL_SERVER_ERROR);
 }
-view("todos/todo/show.view.php", ["todo" => $todo]);
+view("todos/todo/show.view.php", ["todo" => $todo,'errors' => []]);
