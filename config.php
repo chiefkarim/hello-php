@@ -12,3 +12,5 @@ $config['dbname'] = $_ENV['MYSQL_DBNAME'];
 $config['port'] = $_ENV["MYSQL_PORT"];
 $username = $_ENV['MYSQL_USERNAME'];
 $password = $_ENV['MYSQL_PASSWORD'];
+
+error_log("config" . json_encode($config) . " username" . $username);
