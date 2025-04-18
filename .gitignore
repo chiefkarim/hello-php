@@ -1,4 +1,5 @@
 /vendor/
 .env
+.env.*
 .php-cs-fixer.cache
 .vercel
