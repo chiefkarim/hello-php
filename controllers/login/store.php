@@ -2,6 +2,7 @@
 
 use Core\Validator;
 use Core\App;
+use Core\Response;
 
 $email = htmlspecialchars(trim($_POST['email']));
 $password = htmlspecialchars(trim($_POST['password']));
@@ -21,7 +22,6 @@ if (!empty($errors)) {
 }
 
 
-error_log("[DEBUG] validated " . $email . " config:" . json_encode([$config, $password, $username]));
 try {
 
     // check if email exisist
@@ -29,7 +29,7 @@ try {
     $sql = "SELECT * FROM users WHERE email=:email;";
     $stmt = $database->query($sql, ["email" => $email])->statment;
     $user = $stmt->fetch();
-    error_log("[DEBUG] " . json_encode($user));
+
     if ($user) {
         // check if password matches
         if (password_verify($password, $user['password'])) {
