@@ -2,7 +2,7 @@
 
 $header = "Register";
 if (isset($_SESSION['email'])) {
-    header("Location: /");
+    redirect("/");
 }
 
 view("register/index.view.php", ["errors" => [],"header" => $header,"email" => null]);

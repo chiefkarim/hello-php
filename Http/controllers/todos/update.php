@@ -16,7 +16,7 @@ try {
     $database = App::resolve(\Core\Database::class);
     $sql = 'UPDATE TASKS SET completed = :completed WHERE id = :id;';
     $stmt = $database->query($sql, [":completed" => $completed, ":id" => $id]);
-    include base_path('controllers/todos/index.php');
+    controller('todos/index.php', []);
     exit;
 } catch (PDOException $e) {
     error_log($e->getMessage());

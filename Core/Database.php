@@ -15,7 +15,6 @@ class Database
         try {
             $dsn = 'mysql:' . http_build_query($config, "", ";");
             $this-> conn = new PDO($dsn, $username, $password, [ PDO::ATTR_TIMEOUT => 5]);
-            error_log("Connected to database {$config['dbname']} at {$config['host']} successfully.");
         } catch (PDOException $pe) {
             error_log('Could not connecto to database' . $config['dbname'] . ": " . $pe->getMessage());
             abort(Response::INTERNAL_SERVER_ERROR);

@@ -15,7 +15,6 @@ try {
     $database = App::resolve(\Core\Database::class);
     $todo = $database->query("SELECT * FROM TASKS WHERE id=:id", ["id" => $id])->fetchOrAbort();
     $currentUserId = $_SESSION['user']['id'];
-    error_log(json_encode($title));
     authorize($todo['user_id'] === $currentUserId, Response::NOT_AUTHORIZED);
 } catch (PDOException  $pe) {
     error_log($e->getMessage());
@@ -25,7 +24,6 @@ try {
 
 if (!Validator::string($title)) {
     $errors[] = "Error: failed to update todo due to missing parameters";
-    error_log("ehllo");
     view("todos/todo/show.view.php", ["todo" => $todo,"errors" => $errors]);
     exit;
 }
@@ -33,11 +31,9 @@ if (!Validator::string($title)) {
 try {
     $sql = 'UPDATE TASKS SET title = :title WHERE id = :id;';
     $stmt = $database->query($sql, [":title" => $title, ":id" => $id]);
-    header("Location: /todo?id=$id");
-    exit;
+    redirect("/todo?id=$id");
 
 } catch (PDOException $e) {
     error_log($e->getMessage());
     abort(Response::INTERNEL_SERVER_ERROR);
-    exit;
 }

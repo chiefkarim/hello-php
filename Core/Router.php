@@ -64,7 +64,7 @@ class Router
                 }
 
                 //middleware == null
-                return include base_path($route['controller']);
+                return include base_path("Http/controllers/" . $route['controller']);
             }
         }
         abort(\Core\Response::NOT_FOUND);

@@ -24,8 +24,19 @@ function base_path($path)
 function view($path, $arguments = [])
 {
     extract($arguments);
-
     require base_path('/views/' . $path);
+}
+
+function controller($path, $arguments)
+{
+    extract($arguments);
+    require base_path('/Http/controllers/' . $path);
+}
+
+function login($user)
+{
+    $_SESSION['user'] = $user;
+
 }
 
 function logout()
@@ -42,4 +53,18 @@ function logout()
 function isUri(string $pathToMatch): bool
 {
     return $_SERVER['REQUEST_URI'] === $pathToMatch;
+}
+
+function redirect($path)
+{
+    header("Location: $path");
+    exit();
+}
+
+function isLoggedIn()
+{
+    if ($_SESSION['user'] ?? false) {
+        return true;
+    }
+    return false;
 }

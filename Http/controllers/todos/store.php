@@ -19,13 +19,12 @@ if (empty($errors)) {
         $sql = 'INSERT INTO TASKS(title,user_id) values(:title,:user_id);';
         $id = $_SESSION['user']['id'];
         $stmt = $database->query($sql, [':title' => $title,":user_id" => $id ]);
-        header("Location: /todos");
-        exit;
+        redirect("/todos");
     } catch (PDOException $e) {
         error_log($e->getMessage());
         abort(Response::INTERNAL_SERVER_ERROR);
-        exit;
     }
-} else {
-    include base_path("controllers/todos/index.php");
 }
+
+// if success redirect
+controller("todos/index.php", []);
