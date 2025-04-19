@@ -16,7 +16,7 @@ class Authenticator
             if ($user) {
                 // check if password matches
                 if (password_verify($password, $user['password'])) {
-                    $_SESSION['user'] = ["id" => $user['id'],"email" => $email];
+                    login(["id" => $user['id'],"email" => $email]);
                     return true;
                 }
                 return false;

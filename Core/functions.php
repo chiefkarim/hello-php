@@ -24,8 +24,19 @@ function base_path($path)
 function view($path, $arguments = [])
 {
     extract($arguments);
-
     require base_path('/views/' . $path);
+}
+
+function controller($path, $arguments)
+{
+    extract($arguments);
+    require base_path('/Http/controllers/' . $path);
+}
+
+function login($user)
+{
+    $_SESSION['user'] = $user;
+
 }
 
 function logout()
