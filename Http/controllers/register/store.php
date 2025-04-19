@@ -39,8 +39,7 @@ try {
 
     $userId = $stmt->lastInsertId();
     $_SESSION['user'] = ["email" => $email,"id" => $userId];
-    header("Location: /todos");
-    exit();
+    redirect("/todos");
 
 } catch (PDOException  $pe) {
     erro_log($pe);

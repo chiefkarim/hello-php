@@ -54,3 +54,17 @@ function isUri(string $pathToMatch): bool
 {
     return $_SERVER['REQUEST_URI'] === $pathToMatch;
 }
+
+function redirect($path)
+{
+    header("Location: $path");
+    exit();
+}
+
+function isLoggedIn()
+{
+    if ($_SESSION['user'] ?? false) {
+        return true;
+    }
+    return false;
+}

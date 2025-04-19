@@ -31,11 +31,9 @@ if (!Validator::string($title)) {
 try {
     $sql = 'UPDATE TASKS SET title = :title WHERE id = :id;';
     $stmt = $database->query($sql, [":title" => $title, ":id" => $id]);
-    header("Location: /todo?id=$id");
-    exit;
+    redirect("/todo?id=$id");
 
 } catch (PDOException $e) {
     error_log($e->getMessage());
     abort(Response::INTERNEL_SERVER_ERROR);
-    exit;
 }

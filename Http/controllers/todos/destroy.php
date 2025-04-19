@@ -18,11 +18,9 @@ try {
     $stmt = $database->query($sql, [ ':id' => $id,':user_id' => $user_id]);
 
     // Redirection après suppression
-    header("Location: /todos");
-    exit;
+    redirect("/todos");
 
 } catch (PDOException $e) {
     error_log($e->getMessage());
     abort(Response::INTERNEL_SERVER_ERROR);
-    exit;
 }

@@ -2,4 +2,4 @@
 
 logout();
 // redirect to home page
-header("Location: /");
+redirect("/");

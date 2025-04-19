@@ -17,11 +17,10 @@ if (!$form->validate($email, $password)) {
 
 $authenticator = App::resolve(\Core\Authenticator::class)->auth($email, $password);
 if ($authenticator) {
-    header("Location: /todos");
-    exit();
+    redirect("/todos");
+
 }
 
-// return erro without revealing if the account exists
+// if credentials are not valide return errors
 $errors[] = "No matching account found with the entered email and Password!";
 return view("login/create.view.php", ["header" => "Login","errors" => $errors,"email" => $email]);
-exit();
