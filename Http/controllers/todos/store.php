@@ -27,5 +27,6 @@ if (empty($errors)) {
         exit;
     }
 } else {
-    include base_path("Html/controllers/todos/index.php");
+    controller("todos/index.php", []);
+    exit();
 }
