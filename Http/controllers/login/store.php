@@ -1,6 +1,6 @@
 <?php
 
-use Core\Validator;
+use Http\Forms\LoginForm;
 use Core\App;
 use Core\Response;
 
@@ -8,17 +8,11 @@ $email = htmlspecialchars(trim($_POST['email']));
 $password = htmlspecialchars(trim($_POST['password']));
 
 // validate data
-$errors = [];
+$validator = new LoginForm();
 
-if (!Validator::email($email)) {
-    $errors[] = "Please enter valid email!";
-}
-if (!Validator::string($password)) {
-    $errors[] = "Password length must be between 1 and 255 characters!";
-}
 // if errors exist return to the user with the data he submited
-if (!empty($errors)) {
-    return  view("login/create.view.php", ["header" => "Login","errors" => $errors,"email" => $email]);
+if (!$validator->validate($email, $password)) {
+    return  view("login/create.view.php", ["header" => "Login","errors" => $validator->errors(),"email" => $email]);
 }
 
 
@@ -34,10 +28,8 @@ try {
         // check if password matches
         if (password_verify($password, $user['password'])) {
 
-            error_log("[DEBUG] password correct" . json_encode($user));
             $_SESSION['user'] = ["id" => $user['id'],"email" => $email];
 
-            error_log("[DEBUG]session set " . json_encode($user));
             header("Location: /todos");
             exit();
         }
