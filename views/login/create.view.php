@@ -25,14 +25,14 @@ view("partials/head.php", ["header" => $header]);
             type="text"
             id="email"
             name="email"
-            value="<?php echo $_SESSION['__flash']['email'] ?? null; ?>"
+            value="<?php echo $email ?? null; ?>"
             autocomplete="email"
             required
             class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
           >
         </div>
 
-          <p class="py-2 text-red-500"><?php echo $_SESSION['__flash']['errors']['email'] ?? null; ?></p>
+          <p class="py-2 text-red-500"><?php echo $errors['email'] ?? null; ?></p>
       </div>
 
       <div>
@@ -52,7 +52,7 @@ view("partials/head.php", ["header" => $header]);
 
       </div>
 
-          <p class="py-2 text-red-500"><?php echo $_SESSION['__flash']['errors']['error'] ?? null; ?></p>
+          <p class="py-2 text-red-500"><?php echo $errors['error'] ?? null; ?></p>
       <div>
         <button
           type="submit"

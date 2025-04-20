@@ -2,6 +2,7 @@
 
 use Http\Forms\LoginForm;
 use Core\App;
+use Core\Session;
 
 $email = htmlspecialchars(trim($_POST['email']));
 $password = htmlspecialchars(trim($_POST['password']));
@@ -18,8 +19,7 @@ if ($form->validate($email, $password)) {
     $form->error('error', "No matching account found with the entered email and Password!");
 }
 
-$_SESSION['__flash']['errors'] = $form->errors();
-$_SESSION['__flash']['email'] = $email;
-
+Session::flash("errors", $form->errors());
+Session::flash("email", $email);
 
 return redirect("/login");
